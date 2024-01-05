@@ -8,37 +8,51 @@ import RentOfferMarker from "./components/RentOfferMarker/RentOfferMarker";
 function App() {
     const [markers, setMarkers] = useState([
         {
+            id: 1,
             geocode: [48.86, 30.3522],
-            popUp: "Hello, I am pop up 1"
+            selected: true,
         },
         {
+            id: 2,
             geocode: [48.85, 31.3522],
-            popUp: "Hello, I am pop up 2"
+            selected: true,
         },
         {
+            id: 3,
             geocode: [48.855, 32.34],
-            popUp: "Hello, I am pop up 3"
+            selected: true,
         }
     ]);
 
     return (
-        <MapContainer
-            center={[48.850, 33.025]}
-            zoom={6}
-        >
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-
-            <MarkerClusterGroup
-                chunkedLoading
+        <div className="App">
+            <MapContainer
+                center={[48.850, 33.025]}
+                zoom={6}
             >
-                {markers.map((marker) => {
-                    return (<RentOfferMarker markerInfo={marker}/>)
-                })}
-            </MarkerClusterGroup>
-        </MapContainer>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+
+                <MarkerClusterGroup
+                    chunkedLoading
+                >
+                    {markers.map((marker) => {
+                        return (<RentOfferMarker markerInfo={marker}/>)
+                    })}
+                </MarkerClusterGroup>
+            </MapContainer>
+
+            <div className="info_cards_container">
+                <ul className="info_cards_list">
+                    {markers.map(marker => {
+                        return marker.selected ? <li key={marker.id}>{marker.id}</li> : ''
+                    })}
+                </ul>
+            </div>
+
+        </div>
     );
 }
 

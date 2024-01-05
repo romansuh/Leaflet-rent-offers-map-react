@@ -8,7 +8,12 @@ const customIcon = new Icon({
 
 const RentOfferMarker = ({markerInfo}) => {
     return (
-        <Marker position={markerInfo.geocode} icon={customIcon}></Marker>
+        <Marker
+            position={markerInfo.geocode}
+            icon={customIcon}
+        >
+            <button onClick={() => console.log(1)}/>
+        </Marker>
     );
 }
 
