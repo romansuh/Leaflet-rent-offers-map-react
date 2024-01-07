@@ -1,6 +1,9 @@
 .App {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
 }
 
 * {
@@ -23,5 +26,6 @@
 
 .leaflet-container {
   height: 90vh;
-  width: 90%;
+  width: 80%;
+  max-width: 80%;
 }

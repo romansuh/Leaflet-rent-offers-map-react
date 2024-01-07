@@ -20,7 +20,6 @@ const RentOffersMap = () => {
                 chunkedLoading
             >
                 {rentOffers.map((rentOffer) => {
-                    console.log(rentOffer)
                     return (<RentOfferMarker rentOfferInfo={rentOffer}/>)
                 })}
 
