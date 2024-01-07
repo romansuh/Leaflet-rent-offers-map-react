@@ -6,14 +6,12 @@ const customIcon = new Icon({
     iconSize: [38, 38]
 });
 
-const RentOfferMarker = ({markerInfo}) => {
+const RentOfferMarker = ({rentOfferInfo}) => {
     return (
         <Marker
-            position={markerInfo.geocode}
+            position={rentOfferInfo.geocode}
             icon={customIcon}
-        >
-            <button onClick={() => console.log(1)}/>
-        </Marker>
+        />
     );
 }
 

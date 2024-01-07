@@ -2,11 +2,13 @@ import './App.css';
 import "leaflet/dist/leaflet.css";
 import {MapContainer, TileLayer} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import {useState} from "react";
 import RentOfferMarker from "./components/RentOfferMarker/RentOfferMarker";
+import {useSelector} from "react-redux";
+import {useEffect} from "react";
 
 function App() {
-    const [markers, setMarkers] = useState();
+    const rentOffers = useSelector(state => state.offers.offers);
+    useEffect(() => console.log(rentOffers), [rentOffers]);
 
     return (
         <div className="App">
@@ -22,16 +24,18 @@ function App() {
                 <MarkerClusterGroup
                     chunkedLoading
                 >
-                    {markers.map((marker) => {
-                        return (<RentOfferMarker markerInfo={marker}/>)
+                    {rentOffers.map((rentOffer) => {
+                        console.log(rentOffer)
+                        return (<RentOfferMarker rentOfferInfo={rentOffer}/>)
                     })}
+
                 </MarkerClusterGroup>
             </MapContainer>
 
             <div className="info_cards_container">
                 <ul className="info_cards_list">
-                    {markers.map(marker => {
-                        return marker.selected ? <li key={marker.id}>{marker.id}</li> : ''
+                    {rentOffers.map(rentOffer => {
+                        return rentOffer.selected ? <li key={rentOffer.id}>{rentOffer.id}</li> : ''
                     })}
                 </ul>
             </div>

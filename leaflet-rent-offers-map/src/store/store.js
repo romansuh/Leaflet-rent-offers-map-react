@@ -1,8 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit";
-import rentOfferReducer from "./features/rentOffersSlice"
+import rentOffersReducer from "./features/rentOffersSlice"
 
 const store = configureStore({
-    reducer: rentOfferReducer
+    reducer: {
+        offers: rentOffersReducer
+    },
 })
 
 export default store;
