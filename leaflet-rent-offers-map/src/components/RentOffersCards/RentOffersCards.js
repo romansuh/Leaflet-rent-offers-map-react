@@ -8,11 +8,14 @@ const fetchAddress = async (coords) => {
     const url = API_BASE_URL + `reverse?point.lat=${coords[0]}&point.lon=${coords[1]}&api_key=${API_KEY}`;
     const response = await axios.get(url);
     const data = response.data;
-    const address = data.features[0].properties.label;
-    return address;
+    const addressInfo = data.features[0].properties;
+
+    const displayableAddress = addressInfo.name + ', ' + addressInfo.region + ', ' + addressInfo.country;
+
+    return displayableAddress;
 };
 
-const RentOfferCard = ({ offerInfo }) => {
+const RentOfferCard = ({offerInfo}) => {
     const [address, setAddress] = useState('');
 
     useEffect(() => {
@@ -30,8 +33,10 @@ const RentOfferCard = ({ offerInfo }) => {
 
     return (
         <li key={offerInfo.id}>
-            <div  key={offerInfo.id} className="info_card_container">
-                <span  key={offerInfo.id}>{address}</span>
+            <div className="info_card_container">
+                <h3 className="offer_description">{offerInfo.description}</h3>
+                <p className="offer_address">{address}</p>
+                <h4 className="offer_price">{offerInfo.price} &#8372;</h4>
             </div>
         </li>
     );
