@@ -1,37 +1,29 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import axios from "axios";
+import {DATA_API_BASE_URL, DATA_API_ENDPOINTS} from "../../common/dataAPI";
+
+export const fetchOffers = createAsyncThunk("offers/fetchOffers", async () => {
+    const response = await axios.get(DATA_API_BASE_URL + DATA_API_ENDPOINTS.OFFERS);
+    return response.data;
+});
 
 export const rentOffersSlice = createSlice({
     name: "offers",
     initialState: {
-        offers: [
-            {
-                id: 1,
-                geocode: [48.86, 32.3522],
-                selected: true,
-                description: "Description 1",
-                price: 40000
-            },
-            {
-                id: 2,
-                geocode: [48.85, 32.3522],
-                selected: true,
-                description: "Description 2",
-                price: 4000
-            },
-            {
-                id: 3,
-                geocode: [47.855, 31.34],
-                selected: true,
-                description: "Description 3",
-                price: 1000
-            }
-        ],
+        offers: [],
     },
     reducers: {
         addRentOffer: (state, action) => {
-            state.offers.push(action.payload);
-        }
+            state.offers = [...state.offers, action.payload];
+        },
     },
+    extraReducers: builder => {
+        builder
+            .addCase(fetchOffers.fulfilled, (state, action) => {
+                action.payload.map(offer => offer.selected=true)
+                state.offers = action.payload;
+            })
+    }
 });
 
 export const {addRentOffer} = rentOffersSlice.actions;

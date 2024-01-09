@@ -2,10 +2,10 @@ import {useSelector} from "react-redux";
 import "./RentOffersCards.css";
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {API_BASE_URL, API_KEY} from "../../common/geocodeAPI";
+import {GEO_API_BASE_URL, GEO_API_KEY} from "../../common/geocodeAPI";
 
 const fetchAddress = async (coords) => {
-    const url = API_BASE_URL + `reverse?point.lat=${coords[0]}&point.lon=${coords[1]}&api_key=${API_KEY}`;
+    const url = GEO_API_BASE_URL + `reverse?point.lat=${coords[0]}&point.lon=${coords[1]}&api_key=${GEO_API_KEY}`;
     const response = await axios.get(url);
     const data = response.data;
     const addressInfo = data.features[0].properties;
