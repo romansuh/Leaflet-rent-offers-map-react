@@ -3,6 +3,7 @@ import "./RentOffersCards.css";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {GEO_API_BASE_URL, GEO_API_KEY} from "../../common/geocodeAPI";
+import SelectAllButton from "../SelectAllButton/SelectAllButton";
 
 const fetchAddress = async (coords) => {
     const url = GEO_API_BASE_URL + `reverse?point.lat=${coords[0]}&point.lon=${coords[1]}&api_key=${GEO_API_KEY}`;
@@ -48,6 +49,7 @@ const RentOffersCards = () => {
 
     return (
         <div className="info_cards_container">
+            <SelectAllButton/>
             <ul className="info_cards_list">
                 {rentOffers.map(rentOffer => {
                     return rentOffer.selected ? <RentOfferCard offerInfo={rentOffer}/> : ''

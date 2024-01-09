@@ -1,0 +1,9 @@
+.select-btn {
+    position: sticky;
+    top: 0;
+    border: none;
+    background-color: rgba(150, 196, 211, 0.99);
+    color: white;
+    font-size: 16px;
+    padding: 3px 5px;
+}

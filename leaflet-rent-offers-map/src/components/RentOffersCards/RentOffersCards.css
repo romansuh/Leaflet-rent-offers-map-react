@@ -2,10 +2,11 @@
     border: 1px solid gray;
     border-radius: 1%;
     background-color: white;
-    width: max-content;
+    width: fit-content;
     overflow: auto;
     max-height: 70%;
     margin: 12px auto;
+    position: relative;
 }
 
 .info_cards_list {
@@ -21,7 +22,7 @@
     margin: 5px 5px;
     padding: 5px;
     height: fit-content;
-    width: 350px;
+    width: 300px;
 }
 
 .offer_description {

@@ -1,5 +1,7 @@
 import {Marker, Popup} from "react-leaflet";
 import {Icon} from "leaflet";
+import {useDispatch} from "react-redux";
+import {selectOfferByID} from "../../../store/features/rentOffersSlice";
 
 const customIcon = new Icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
@@ -7,6 +9,13 @@ const customIcon = new Icon({
 });
 
 const RentOfferMarker = ({rentOfferInfo}) => {
+
+    const dispatch = useDispatch();
+
+    const handleOfferSelected = (offerID) => {
+        dispatch(selectOfferByID(offerID));
+    }
+
     return (
         <Marker
             position={rentOfferInfo.geocode}
@@ -14,7 +23,13 @@ const RentOfferMarker = ({rentOfferInfo}) => {
         >
             <Popup>
                 <p>{rentOfferInfo.description}</p>
-                <button type="button" className="offer_marker_btn" onClick={() => console.log(1)}>More...</button>
+                <button
+                    type="button"
+                    className="offer_marker_btn"
+                    onClick={() => handleOfferSelected(rentOfferInfo.id)}
+                >
+                    SELECT
+                </button>
             </Popup>
         </Marker>
     );
