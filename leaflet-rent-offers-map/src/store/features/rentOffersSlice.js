@@ -41,6 +41,24 @@ export const rentOffersSlice = createSlice({
         },
         selectAllOffers: (state) => {
             state.offers.map(offer => offer.selected = true)
+        },
+        unselectByBounds: (state, action) => {
+            const bounds = action.payload;
+
+            const unselectedOffers = state.offers.filter(
+                offer => {
+                    return !(
+                        bounds._northEast.lat > offer.geocode[0] &&
+                        bounds._southWest.lat < offer.geocode[0] &&
+                        bounds._northEast.lng > offer.geocode[1] &&
+                        bounds._southWest.lat < offer.geocode[0]
+                    )
+                }
+            )
+
+            if (unselectedOffers) {
+                unselectedOffers.map(offer => offer.selected = false)
+            }
         }
     },
     extraReducers: builder => {
@@ -56,5 +74,5 @@ export const rentOffersSlice = createSlice({
     }
 });
 
-export const {selectOfferByID, selectAllOffers} = rentOffersSlice.actions;
+export const {selectOfferByID, selectAllOffers, unselectByBounds} = rentOffersSlice.actions;
 export default rentOffersSlice.reducer;
