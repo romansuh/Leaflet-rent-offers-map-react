@@ -1,0 +1,40 @@
+{
+  "offers": [
+    {
+      "id": 1,
+      "geocode": [
+        48.86,
+        32.3522
+      ],
+      "description": "Description 1",
+      "price": 40000
+    },
+    {
+      "id": 2,
+      "geocode": [
+        48.85,
+        32.3522
+      ],
+      "description": "Description 2",
+      "price": 4000
+    },
+    {
+      "id": 3,
+      "geocode": [
+        47.855,
+        31.34
+      ],
+      "description": "Description 3",
+      "price": 1000
+    },
+    {
+      "id": "ee94",
+      "description": " test",
+      "price": 23000,
+      "geocode": [
+        50.447187,
+        30.522946
+      ]
+    }
+  ]
+}
