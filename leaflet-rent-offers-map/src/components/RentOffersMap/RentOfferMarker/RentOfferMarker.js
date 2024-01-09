@@ -9,7 +9,6 @@ const customIcon = new Icon({
 });
 
 const RentOfferMarker = ({rentOfferInfo}) => {
-
     const dispatch = useDispatch();
 
     const handleOfferSelected = (offerID) => {
