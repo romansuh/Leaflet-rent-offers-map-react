@@ -1,4 +1,4 @@
-import {Marker} from "react-leaflet";
+import {Marker, Popup} from "react-leaflet";
 import {Icon} from "leaflet";
 
 const customIcon = new Icon({
@@ -11,7 +11,12 @@ const RentOfferMarker = ({rentOfferInfo}) => {
         <Marker
             position={rentOfferInfo.geocode}
             icon={customIcon}
-        />
+        >
+            <Popup>
+                <p>{rentOfferInfo.description}</p>
+                <button type="button" className="offer_marker_btn" onClick={() => console.log(1)}>More...</button>
+            </Popup>
+        </Marker>
     );
 }
 

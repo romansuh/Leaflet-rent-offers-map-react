@@ -1,0 +1,5 @@
+.offer_marker_btn {
+    border: none;
+    background: transparent;
+    z-index: 10000;
+}

@@ -2,6 +2,7 @@ import {MapContainer, TileLayer} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import RentOfferMarker from "./RentOfferMarker/RentOfferMarker";
 import {useSelector} from "react-redux";
+import "./RentOffersMap.css";
 
 const RentOffersMap = () => {
     const rentOffers = useSelector(state => state.offers.offers);
