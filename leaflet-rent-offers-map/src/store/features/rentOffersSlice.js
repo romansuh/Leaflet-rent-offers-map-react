@@ -18,6 +18,7 @@ export const addRentOffer = createAsyncThunk("offers/addOffer", async (offer) =>
     const geocodeResponse = await axios.get(geocodeUrl);
     const geocode = geocodeResponse.data.features[0].geometry.coordinates;
     offerToAdd.geocode = [geocode[1], geocode[0]];
+
     const response = await axios.post(DATA_API_BASE_URL + DATA_API_ENDPOINTS.OFFERS, offerToAdd);
     return response.data
 });
@@ -27,7 +28,21 @@ export const rentOffersSlice = createSlice({
     initialState: {
         offers: [],
     },
-    reducers: {},
+    reducers: {
+        selectOfferByID: (state, action) => {
+            const selectedOfferID = action.payload;
+            const unselectedOffers = state.offers.filter(offer => offer.id !== selectedOfferID);
+            const selectedOffer = state.offers.find(offer => offer.id === selectedOfferID)
+
+            if (unselectedOffers) {
+                unselectedOffers.map(offer => offer.selected = false);
+                selectedOffer.selected = true;
+            }
+        },
+        selectAllOffers: (state) => {
+            state.offers.map(offer => offer.selected = true)
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(fetchOffers.fulfilled, (state, action) => {
@@ -35,12 +50,11 @@ export const rentOffersSlice = createSlice({
                 state.offers = action.payload;
             })
             .addCase(addRentOffer.fulfilled, (state, action) => {
-                console.log(action)
                 action.payload.selected = true;
                 state.offers = [action.payload, ...state.offers];
             })
     }
 });
 
-export const {} = rentOffersSlice.actions;
+export const {selectOfferByID, selectAllOffers} = rentOffersSlice.actions;
 export default rentOffersSlice.reducer;
