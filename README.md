@@ -4,7 +4,7 @@
 
  To start applications server-side and client-side at the same time you need to write this in the terminal in application directory:
 ```
-cd lealet-rent-offers-map
+cd leaflet-rent-offers-map
 npm run dev
 ```
  You can also start each part separately.
@@ -13,7 +13,7 @@ npm run dev
 
  To start applications server-side you need to write this in the terminal in application directory:
 ```
-cd lealet-rent-offers-map
+cd leaflet-rent-offers-map
 npm run server
 ```
 
@@ -21,6 +21,6 @@ npm run server
 
  To start applications client-side you need to write this in the terminal in application directory:
 ```
-cd lealet-rent-offers-map
+cd leaflet-rent-offers-map
 npm start
 ```
